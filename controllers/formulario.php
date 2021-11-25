@@ -1,6 +1,7 @@
 <?php
 
 require_once 'models/iniciomodel.php';
+require_once 'public/generate-pdf/generatepdf.php';
 
 class Formulario extends Controller
 {
@@ -856,6 +857,32 @@ class Formulario extends Controller
 
         echo $this->responseMessage($respuesta);
     }
+
+
+    
+    public function generatePDFByIdActa()
+    {
+
+        $idActa = $_POST['idActa'];
+        
+        $actaDetalle = $this->model->findByIdActa($idActa);
+
+        $urlPDF=$this->generatePdf($actaDetalle);
+
+        echo $this->responseMessageContenido($urlPDF);
+
+    }
+
+    
+    public function generatePdf($evaluacion){
+
+
+        $pdf=new GeneratePDF();
+        $urlPDF =  $pdf->generateActaReuniondf($evaluacion);
+
+        return $urlPDF;
+    }
+
 
 
     public function responseMessage($value)

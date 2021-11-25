@@ -21,7 +21,7 @@ class Registro extends Controller
 
         $idActaReunion = $_POST['idActaReunion'];
         $dni = $_POST['dni'];
-        $firma = $_POST['nombreFirmaTrabajador'];
+        $firma = str_replace(" ","",$_POST['nombreFirmaTrabajador']);
         $nombreApellido = $_POST['nombreApellido'];
         $sigla = $_POST['sigla'];
         $cargo = $_POST['cargo'];

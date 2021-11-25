@@ -1630,7 +1630,7 @@ $(function () {
     $(".buttonPdf").on("click", function (event) {
         event.preventDefault();
 
-        $.post(RUTA + "evaluaciones/generatePDFByIdExamen", { idExamen: IDEXAMENEDITAR },
+        $.post(RUTA + "formulario/generatePDFByIdActa", { idActa : IDEXAMENEDITAR },
             function (data, textStatus, jqXHR) {
 
 

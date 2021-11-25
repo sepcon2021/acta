@@ -1056,4 +1056,200 @@ DECRETO SUPREMO N° 024 -2016-EM'), 0, 'L', false);
             return "wrong";
         }
     }
+
+
+
+
+
+
+
+
+
+    // Generar Acta de Reunión
+
+    public function generateActaReuniondf($actaReunionDetalle)
+    {
+
+        $pdf = new FPDF();
+
+        $numeracion = 1;
+
+        //$arrayCantidadPaginas = $this->crearArray($evaluacion->listaEvaluacion);
+
+
+        for ($index = 0; $index < 1 ; $index++) {
+
+
+            $pdf->AddPage();
+            $pdf->SetFont('Arial', 'B', 10);
+            $pdf->SetTextColor(0, 0, 0);
+
+            $pdf->Image('public/img/logo.png', 15, 10, 20);
+            $pdf->Cell(30, 15, '', 1, 0, 'C');
+
+
+            $pdf->MultiCell(110, 15, utf8_decode('ACTA DE REUNIONES'), 1, 'C', false);
+            
+            $pdf->SetFont('Helvetica', '', 8);
+            $pdf->SetXY(150, 10);
+            $pdf->SetFont('Helvetica', '', 6.5);
+            $pdf->MultiCell(45, 3.75, utf8_decode('PSPC-610-X-PR-007-AC-001
+Revisión: 0
+Emisión: 08/05/2019
+Página: 1 de 1
+'), 1, 'L', false);
+
+
+            $pdf->Cell(30, 5, 'Motivo', 1);
+            $pdf->Cell(90, 5, utf8_decode($actaReunionDetalle->motivo), 1);
+            $pdf->Cell(20, 5, 'Fecha', 1);
+            $pdf->Cell(45, 5, utf8_decode($actaReunionDetalle->fecha), 1);
+
+            $pdf->SetXY(10, 30);
+
+            $pdf->Cell(30, 5, utf8_decode('Número de reunión'), 1);
+            $pdf->Cell(90, 5, utf8_decode($actaReunionDetalle->numeroReunion), 1);
+            $pdf->Cell(20, 5, 'Lugar', 1);
+            $pdf->Cell(45, 5, utf8_decode($actaReunionDetalle->lugar), 1);
+
+            $pdf->SetXY(10, 35);
+
+
+            $pdf->Cell(30, 5, utf8_decode('Tiempo programado'), 1);
+            $pdf->Cell(90, 5, utf8_decode($actaReunionDetalle->tiempoProgramado), 1);
+            $pdf->Cell(30, 5, utf8_decode('Tiempo real de duración'), 1);
+            $pdf->Cell(35, 5, utf8_decode($actaReunionDetalle->tiempoRealDuracion), 1);
+
+            $pdf->SetXY(10, 40);
+
+
+            $pdf->Cell(30, 5, utf8_decode('Nombre del proyecto'), 1);
+            $pdf->Cell(90, 5, utf8_decode($actaReunionDetalle->nombreProyecto), 1);
+            $pdf->Cell(20, 5, 'Cliente', 1);
+            $pdf->Cell(45, 5, utf8_decode($actaReunionDetalle->cliente), 1);
+
+            $pdf->SetXY(10, 45);
+            $pdf->SetFont('Helvetica', 'B', 6);
+            $pdf->SetFillColor(192, 192, 192); //Fondo verde de celda
+            $pdf->SetTextColor(0,0,0); //Color del texto: Negro
+            $pdf->Cell(185, 5, utf8_decode('1.PARTICIPANTES'),  1, 0, 'L', true);
+
+            $pdf->SetXY(10, 50);
+            $pdf->SetFont('Helvetica', '', 6);
+            $pdf->SetFillColor(255, 255,255); //Fondo verde de celda
+            $pdf->SetTextColor(0,0,0);
+            $pdf->Cell(60, 5, utf8_decode('Asistentes'), 1,0,'C',true);
+            $pdf->Cell(20, 5, utf8_decode('Siglas'), 1,0,'C',true);
+            $pdf->Cell(65, 5, utf8_decode('Cargo'), 1,0,'C',true);
+            $pdf->Cell(40, 5, utf8_decode('Firma'), 1,0,'C',true);
+            $pdf->SetXY(10, 55);
+
+            $cantidadParticipantes = count($actaReunionDetalle->listaParticipantes);
+
+            if($cantidadParticipantes != 10){
+                
+                for($i = 0 ; $i < (10 - $cantidadParticipantes); $i++){
+                    array_push($actaReunionDetalle->listaParticipantes,new Participante());
+                }
+            }
+
+            foreach($actaReunionDetalle->listaParticipantes as $participante){
+                
+                $pdf->Cell(60, 8, $participante->asistente, 1, 0, 'C', false); // First column of row 1 
+                $pdf->Cell(20, 8, $participante->sigla, 1, 0, 'C', false); // Second column of row 1 
+                $pdf->Cell(65, 8, utf8_decode($participante->cargo), 1, 0, 'C', false); // Third column of row 1 
+                //$pdf->Cell(40, 10, $pdf->Image('firmas/'.$participante->firma, $pdf->GetX(), $pdf->GetY(), 20, 10), 1, 1, 'C', false); // Fourth column of row 1 
+                strlen($participante->firma) > 0 ?  $pdf->Cell(40, 8, $pdf->Image('firmas/'.$participante->firma, $pdf->GetX(), $pdf->GetY(), 10, 10), 1, 1, 'C', false) : $pdf->Cell(40, 8, '', 1, 1, 'C', false); // Fourth column of row 1 
+
+            }
+
+
+            $pdf->SetXY(10, 135);
+            $pdf->SetFont('Helvetica', 'B', 6);
+            $pdf->SetFillColor(192, 192, 192); //Fondo verde de celda
+            $pdf->SetTextColor(0,0,0); //Color del texto: Negro
+            $pdf->Cell(185, 5, utf8_decode('II.TEMAS GENERAL'),  1, 0, 'L', true);
+
+            $pdf->SetXY(10, 140);
+            $pdf->SetFont('Helvetica', '', 6);
+            $pdf->SetFillColor(255, 255,255); //Fondo verde de celda
+            $pdf->SetTextColor(0,0,0);
+            $pdf->Cell(60, 5, utf8_decode('TEMAS EN AGENDA'), 1,0,'C',true);
+            $pdf->Cell(20, 5, utf8_decode('Duración'), 1,0,'C',true);
+            $pdf->Cell(25, 5, utf8_decode('Responsable'), 1,0,'C',true);
+            $pdf->Cell(20, 5, utf8_decode('Tratados'), 1,0,'C',true);
+            $pdf->Cell(20, 5, utf8_decode('No Tratados'), 1,0,'C',true);
+            $pdf->Cell(40, 5, utf8_decode('Firma'), 1,0,'C',true);
+
+            $pdf->SetXY(10, 145);
+
+            $cantidadTemasGeneral = count($actaReunionDetalle->listaTemaGeneral);
+
+            if($cantidadTemasGeneral != 10){
+                
+                for($i = 0 ; $i < (10 - $cantidadTemasGeneral); $i++){
+                    array_push($actaReunionDetalle->listaTemaGeneral,new TemaGeneral());
+                }
+            }
+
+            foreach($actaReunionDetalle->listaTemaGeneral as $temaGeneral){
+                
+                $pdf->Cell(60, 5, $temaGeneral->temaAgenda, 1, 0, 'C', false);
+                $pdf->Cell(20, 5, $temaGeneral->duracion, 1, 0, 'C', false);
+                $pdf->Cell(25, 5, $temaGeneral->responsable, 1, 0, 'C', false);
+                $pdf->Cell(20, 5, $temaGeneral->tratado, 1, 0, 'C', false);
+                $pdf->Cell(20, 5, $temaGeneral->noTratado, 1, 0, 'C', false);
+                $pdf->Cell(40, 5, $temaGeneral->comentario, 1, 0, 'C', false);
+
+
+            }
+
+
+
+/*
+            $pdf->SetXY(10, 40);
+            $pdf->SetFont('Helvetica', '', 7);
+            $pdf->MultiCell(110, 3.5, utf8_decode('
+        Razón Social : SERVICIOS PETROLEROS Y CONSTRUCCIONES SEPCON S.A.C
+        RUC: 20504898173 
+        Domicilio: Av. San Borja Norte 445 - San Borja -Perú
+        Tipo de Acntividad Económica:
+        '), 1, 'L', false);
+
+            $pdf->SetXY(120, 40);
+            $pdf->MultiCell(75, 3, utf8_decode("
+        Trabajadores del Proyecto: $actaReunionDetalle->motivo
+        Año de Inicio del Proyecto: 2021 
+        Número de Trabajadores Afiliados al SCTR:
+        Número de Trabajadores No Afiliados al SCTR:
+        Nombre de la Asegurador : RIMAC
+        "), 1, 'L', false);
+
+
+            $pdf->Line(160, 46, 193, 46);
+            $pdf->Line(175, 51, 193, 51);
+            $pdf->Line(180, 55, 193, 55);
+
+*/
+        }
+
+
+
+
+        $fecha = new DateTime();
+        $fecha = $fecha->getTimestamp();
+
+        $filename = "public/reports/actaReunion" . $fecha . ".pdf";
+
+        if (file_exists($filename)) {
+            unlink($filename);
+        }
+
+        $pdf->Output($filename, 'F');
+        if (file_exists($filename)) {
+            return $filename;
+        } else {
+            return "fail documento";
+        }
+    }
 }

@@ -12,4 +12,5 @@ class Acta{
     public $observaciones;
     public $listaTemaGeneral;
     public $listaTemaPropuesto;
+    public $listaParticipantes;
 }

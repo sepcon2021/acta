@@ -8,6 +8,7 @@ require_once 'models/firmaFacilitador.php';
 require_once 'models/acta.php';
 require_once 'models/temaGeneral.php';
 require_once 'models/temaPropuesto.php';
+require_once 'models/participante.php';
 
 class FormularioModel extends Model
 {
@@ -297,6 +298,7 @@ class FormularioModel extends Model
                 $acta->observaciones = $row['observaciones'];
                 $acta->listaTemaGeneral = $this->getListTemaGeneral($row['id']);
                 $acta->listaTemaPropuesto = $this->getListTemaPropuesto($row['id']);
+                $acta->listaParticipantes = $this->getListParticipantes($row['id']);
             }
 
             return $acta;
@@ -1447,6 +1449,47 @@ class FormularioModel extends Model
 
 
             return $listActa;
+
+        } catch (PDOexception $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function getListParticipantes($idActa)
+    {
+        
+
+        $listParticipante = array();
+
+        try {
+
+            $query = $this->db->connect()->prepare("SELECT
+            id,
+            asistente ,
+            sigla ,
+            cargo ,
+            dni ,
+            firma
+            FROM participante WHERE id_acta_reunion = $idActa ORDER BY registro DESC");
+
+            $query->execute();
+            
+            while($row = $query->fetch()){
+                $participante = new Participante;
+
+                $participante->id = $row['id'];
+                $participante->asistente = $row['asistente'];
+                $participante->sigla = $row['sigla'];
+                $participante->cargo = $row['cargo'];
+                $participante->dni =$row['dni'];
+                $participante->firma = $row['firma'];
+
+                array_push($listParticipante,$participante);
+            }
+
+
+            return $listParticipante;
 
         } catch (PDOexception $e) {
             echo $e->getMessage();
