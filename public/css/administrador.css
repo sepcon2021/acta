@@ -1,0 +1,36 @@
+.titulo{
+    margin: 20px;
+
+}
+select{
+
+    margin-top: 0px;
+    margin-right: 20px;
+    margin-bottom: 0px;
+    margin-left: 20px;
+    width: 50%;
+    padding: 5px;
+    border-radius: 5px;
+    background:  #E9ECF4;
+}
+
+#botonEnviar{
+    width: 15%;
+    background: rgb(105, 201, 105);
+    color: white;
+    border-color: transparent;
+    height: 40px;
+    border-radius: 8px;
+    margin-left: 20px;
+
+}
+
+.botonIngresar{
+    width: 50%;
+    background: rgb(105, 201, 105);
+    color: white;
+    border-color: transparent;
+    height: 40px;
+    margin: 20px;
+    border-radius: 8px;
+}

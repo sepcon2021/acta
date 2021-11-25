@@ -1,0 +1,319 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#listaPreguntas {
+    width: 100%;
+    max-width: 100%;
+}
+
+body {
+    background: #E9ECF4;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+}
+
+.contenedor {
+    width: 80%;
+    max-width: 60%;
+    margin: 20px auto;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1.5fr 1.5fr;
+    grid-template-rows: repeat(5, auto);
+    grid-template-areas: "respuesta respuesta" "header header " "listaPreguntas listaPreguntas" "listaTemaPropuesto listaTemaPropuesto" "load load" ;
+}
+
+.contenedor>div,
+.contenedor #listaPreguntas,
+.contenedor #listaTemaPropuesto,
+.contenedor .header,
+.contenedor .load,
+.contenedor .respuesta {
+    border-radius: 4px;
+}
+
+.contenedor .header {
+    background: #12203E;
+    color: #fff;
+    grid-area: header;
+
+}
+
+.contenedor #listaPreguntas {
+    grid-area: listaPreguntas;
+}
+
+.contenedor #listaTemaPropuesto {
+    grid-area: listaTemaPropuesto;
+}
+
+.contenedor .load {
+    grid-area: load;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor .respuesta {
+    grid-area: respuesta;
+}
+
+.contenido {
+    background: #fff;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.bordes {
+    margin: 20px;
+    padding: 10px;
+}
+
+.succesMessage {
+    margin: 20px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.contenedor .sidebar {
+    grid-column: 2 / 3;
+    background: #fAA43D;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    grid-area: sidebar;
+}
+
+.prueba{
+    display: contents;
+
+}
+
+@media screen and (max-width: 768px) {
+    .contenedor {
+        max-width: 90%;
+        grid-template-areas:  "respuesta respuesta" "header header " "listaPreguntas listaPreguntas" "load load";
+    }
+}
+
+.firmaBordes {
+    border: 1px dotted #12203E;
+}
+
+#btnRegister {
+    background-color: #1989FF;
+    border-radius: 16px;
+    border: 1px solid white;
+    width: 100%;
+    height: 50px;
+    color: white;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    /* Light grey */
+    border-top: 16px solid #1989FF;
+    /* Blue */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+    align-self: center;
+}
+
+@keyframes spin {
+    0% {
+        translistaPreguntas: rotate(0deg);
+    }
+    100% {
+        translistaPreguntas: rotate(360deg);
+    }
+}
+
+.error_message {
+    color: red;
+    visibility: hidden;
+}
+
+#firmaMessage {
+    color: red;
+    size: 14px;
+}
+
+.descargar {
+    background-color: #1989FF;
+    border-radius: 16px;
+    border: 1px solid #1989FF;
+    width: 100%;
+    height: 30px;
+    padding: 2px;
+    color: white;
+}
+
+.buttonInicio {
+    background-color: #1989FF;
+    border-radius: 16px;
+    border: 1px solid #1989FF;
+    height: 30px;
+    padding: 20px;
+    color: white;
+}
+
+/*#comentario {
+    width: 100%;
+    height: 80px;
+}*/
+
+/*.comentario {
+    width: 100%;
+    height: 80px;
+    margin-top: 8px;
+}*/
+
+.tableroDescarga{
+    width: 100%;
+    height: auto;
+    background:#12203E ;
+    border-radius: 8px;
+}
+
+.button-eliminar{
+
+    background: rgb(255, 51, 51);
+    border-radius: 16px;
+    border: 1px solid rgb(255, 51, 51);
+    font-size: 1rem;
+    padding: 10px;
+    margin: 10px;
+    border-color: transparent;
+    color: white;
+}
+
+
+.descargarDocumento {
+    background-color: #1989FF;
+    border-radius: 16px;
+    border: 1px solid #1989FF;
+    width: 20%;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+}
+
+.icon-download{
+    width: 20px;
+    height: 20px;
+}
+
+.titulo-descargable{
+    color:white;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+.contenidoStart{
+
+    border: 5px solid white;
+    border-radius: .5em;
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.contenidoFinish{
+
+    border: 5px solid white;
+    border-radius: .5em;
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.titulos {
+    width: 100%;
+    height: auto;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    font-size: 18px;
+    
+}
+
+
+.alternativa{
+    width: 60%;
+    height: 25px;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    
+}
+
+.boxAlternativa{
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.puntaje{
+    width: 80px;
+}
+
+.iconoEliminar{
+    width: 15px;
+    height: 15px;
+}
+
+.eliminar {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.iconoEliminarAlternativa{
+    width: 7px;
+    height: 7px;
+}
+.buttonEliminarAlternativa{
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.agregarAlternativa{
+    background: rgb(105, 201, 105);
+    border-radius: 5%;
+    font-size: 1rem;
+    padding: 5px;
+    border-color: transparent;
+    color: white;
+}
+
+
+.puestoTrabajo{
+    width: max-content;
+    background-color: white;
+    color: green;
+    font-size: px;
+    padding: 7px;
+    margin: 10px;
+    border-radius: 5px;
+    display: inline-flex;
+}
+
+.puestoTrabajoGeneral{
+    display: inline-flex;
+}
+
+
+.iconoEliminarPuestoTrabajo{
+    width: 10px;
+    height: 10px;
+    padding: 5px;
+}

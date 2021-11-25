@@ -1,0 +1,55 @@
+.campo{
+    margin: 20px;
+}
+
+select{
+    width: 30%;
+}
+
+.button-style{
+
+    background: rgb(105, 201, 105);
+    border-radius: 20px;
+    font-size: 1rem;
+    padding: 10px;
+    margin: 10px;
+    border-color: transparent;
+    color: white;
+}
+
+.button-upload{
+    border-radius: 10%;
+    font-size: 1rem;
+    padding: 10px;
+    background: rgb(105, 201, 105);
+    color:white;
+    border-color:  rgb(105, 201, 105);
+}
+
+.buttonDeletePopup{
+    border-radius: 10%;
+    font-size: 1rem;
+    padding: 10px;
+    background:#F20544;
+    color:white;
+    border-color:  #F20544;
+}
+
+
+
+img{
+    width: 30px;
+    height: 30px;
+}
+@media screen and (max-width: 768px) {
+    select {
+        width: 100%;
+    }
+}
+
+#boxLoad , #respuesta{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

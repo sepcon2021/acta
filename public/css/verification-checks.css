@@ -1,0 +1,124 @@
+.form-control {
+    width: 100%;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    position: relative;
+    border-color: black;
+}
+
+.form-control label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.form-control input {
+    border: 2px solid black;
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.form-control input:focus {
+    outline: 0;
+    border-color: black;
+}
+
+.form-control.success input {
+    border-color: #2ecc71;
+}
+
+.form-control.error input {
+    border-color: red;
+}
+
+.form-control i {
+    visibility: hidden;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+}
+
+.form-control.success i.fa-check-circle {
+    color: #2ecc71;
+    visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+    color: red;
+    visibility: visible;
+}
+
+.form-control small {
+    color: red;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    visibility: hidden;
+    width: 100%;
+}
+
+.form-control.error small {
+    visibility: visible;
+}
+
+.form button {
+    background-color: #8e44ad;
+    border: 2px solid #8e44ad;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.form-control-item i {
+    visibility: hidden;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+}
+
+.message.error i.fa-exclamation-circle {
+    color: red;
+    visibility: visible;
+}
+
+.message.success i.fa-check-circle {
+    color: #2ecc71;
+    visibility: visible;
+}
+
+.message.afterSubmit i {
+    visibility: hidden;
+}
+
+#message-firma {
+    color: red;
+    visibility: hidden;
+    font-weight: bold;
+}
+
+.message i {
+    /* visibility: hidden;*/
+    display: none;
+}
+
+.form-control.reset i {
+    visibility: hidden;
+}
+
+.tablaConBordes canvas {
+    border-style: solid;
+    border-color: #777;
+}
+
+.campo-obligatorio {
+    color: red;
+    font-weight: bold;
+    display: none;
+}

@@ -1,0 +1,35 @@
+.item {
+    display: inline-block;
+    /* background-color: cadetblue;*/
+}
+
+.container-question {
+    border: 1px solid black;
+    height: 20%;
+    text-align: center;
+    padding-top: 20px;
+}
+
+
+/*
+
+.container-content {
+    background-color: cyan;
+}
+
+.container-comments {
+     background-color: darkkhaki;
+}
+*/
+
+.container-comments {
+    display: none;
+}
+
+.button-register {
+    text-align: center;
+    /*  background-color: darkorange;*/
+    height: 200px;
+    width: 80%;
+    padding-top: 90px;
+}

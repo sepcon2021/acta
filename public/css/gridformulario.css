@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#listaPreguntas {
+    width: 100%;
+    max-width: 100%;
+}
+
+body {
+    background: #E9ECF4;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+}
+
+.contenedor {
+    width: 80%;
+    max-width: 60%;
+    margin: 20px auto;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1.5fr 1.5fr;
+    grid-template-rows: repeat(4, auto);
+    grid-template-areas: "header header " "listaPreguntas listaPreguntas" "load load" "respuesta respuesta";
+}
+
+.contenedor>div,
+.contenedor #listaPreguntas,
+.contenedor .header,
+.contenedor .load,
+.contenedor .respuesta {
+    border-radius: 4px;
+}
+
+.contenedor .header {
+    background: #12203E;
+    color: #fff;
+    grid-area: header;
+
+}
+
+.contenedor #listaPreguntas {
+    grid-area: listaPreguntas;
+}
+
+.contenedor .load {
+    grid-area: load;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor .respuesta {
+    grid-area: respuesta;
+}
+
+.contenido {
+    background: #fff;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.bordes {
+    margin: 20px;
+    padding: 10px;
+}
+
+.succesMessage {
+    margin: 20px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.contenedor .sidebar {
+    grid-column: 2 / 3;
+    background: #fAA43D;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    grid-area: sidebar;
+}
+
+.prueba{
+    display: contents;
+
+}
+
+@media screen and (max-width: 768px) {
+    .contenedor {
+        max-width: 90%;
+        grid-template-areas: "header header " "listaPreguntas listaPreguntas" "load load" "respuesta respuesta";
+    }
+}
+
+.firmaBordes {
+    border: 1px dotted #12203E;
+}
+
+#btnRegister {
+    background-color: #1989FF;
+    border-radius: 16px;
+    border: 1px solid white;
+    width: 100%;
+    height: 50px;
+    color: white;
+}
+
+
+.error_message {
+    color: red;
+    visibility: hidden;
+}
+
+#firmaMessage {
+    color: red;
+    size: 14px;
+}
+
+.descargar {
+    background-color: #1989FF;
+    border-radius: 16px;
+    border: 1px solid #1989FF;
+    width: 100%;
+    height: 30px;
+    padding: 2px;
+    color: white;
+}
+
+.buttonInicio {
+    background-color: #1989FF;
+    border-radius: 16px;
+    border: 1px solid #1989FF;
+    height: 30px;
+    padding: 20px;
+    color: white;
+}
+
+#comentario {
+    width: 100%;
+    height: 80px;
+}
