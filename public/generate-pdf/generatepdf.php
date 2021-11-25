@@ -1155,11 +1155,10 @@ Página: 1 de 1
 
             foreach($actaReunionDetalle->listaParticipantes as $participante){
                 
-                $pdf->Cell(60, 8, $participante->asistente, 1, 0, 'C', false); // First column of row 1 
-                $pdf->Cell(20, 8, $participante->sigla, 1, 0, 'C', false); // Second column of row 1 
-                $pdf->Cell(65, 8, utf8_decode($participante->cargo), 1, 0, 'C', false); // Third column of row 1 
-                //$pdf->Cell(40, 10, $pdf->Image('firmas/'.$participante->firma, $pdf->GetX(), $pdf->GetY(), 20, 10), 1, 1, 'C', false); // Fourth column of row 1 
-                strlen($participante->firma) > 0 ?  $pdf->Cell(40, 8, $pdf->Image('firmas/'.$participante->firma, $pdf->GetX(), $pdf->GetY(), 10, 10), 1, 1, 'C', false) : $pdf->Cell(40, 8, '', 1, 1, 'C', false); // Fourth column of row 1 
+                $pdf->Cell(60, 8, $participante->asistente, 1, 0, 'C', false); 
+                $pdf->Cell(20, 8, $participante->sigla, 1, 0, 'C', false); 
+                $pdf->Cell(65, 8, utf8_decode($participante->cargo), 1, 0, 'C', false);
+                strlen($participante->firma) > 0 ?  $pdf->Cell(40, 8, $pdf->Image('firmas/'.$participante->firma, $pdf->GetX(), $pdf->GetY(), 10, 10), 1, 1, 'C', false) : $pdf->Cell(40, 8, '', 1, 1, 'C', false); 
 
             }
 
@@ -1185,6 +1184,7 @@ Página: 1 de 1
 
             $cantidadTemasGeneral = count($actaReunionDetalle->listaTemaGeneral);
 
+
             if($cantidadTemasGeneral != 10){
                 
                 for($i = 0 ; $i < (10 - $cantidadTemasGeneral); $i++){
@@ -1192,45 +1192,76 @@ Página: 1 de 1
                 }
             }
 
+            $index = 145;
+
             foreach($actaReunionDetalle->listaTemaGeneral as $temaGeneral){
                 
-                $pdf->Cell(60, 5, $temaGeneral->temaAgenda, 1, 0, 'C', false);
-                $pdf->Cell(20, 5, $temaGeneral->duracion, 1, 0, 'C', false);
-                $pdf->Cell(25, 5, $temaGeneral->responsable, 1, 0, 'C', false);
-                $pdf->Cell(20, 5, $temaGeneral->tratado, 1, 0, 'C', false);
-                $pdf->Cell(20, 5, $temaGeneral->noTratado, 1, 0, 'C', false);
-                $pdf->Cell(40, 5, $temaGeneral->comentario, 1, 0, 'C', false);
+                $pdf->SetXY(10, $index);
 
+                $pdf->Cell(60, 5, utf8_decode($temaGeneral->temaAgenda), 1, 0, 'C', false);
+                $pdf->Cell(20, 5, utf8_decode($temaGeneral->duracion), 1, 0, 'C', false);
+                $pdf->Cell(25, 5, utf8_decode($temaGeneral->responsable), 1, 0, 'C', false);
+                $pdf->Cell(20, 5, utf8_decode($temaGeneral->tratado), 1, 0, 'C', false);
+                $pdf->Cell(20, 5, utf8_decode($temaGeneral->noTratado), 1, 0, 'C', false);
+                $pdf->Cell(40, 5, utf8_decode($temaGeneral->comentario), 1, 0, 'C', false);
 
+                $index+=5;
             }
 
 
 
-/*
-            $pdf->SetXY(10, 40);
-            $pdf->SetFont('Helvetica', '', 7);
-            $pdf->MultiCell(110, 3.5, utf8_decode('
-        Razón Social : SERVICIOS PETROLEROS Y CONSTRUCCIONES SEPCON S.A.C
-        RUC: 20504898173 
-        Domicilio: Av. San Borja Norte 445 - San Borja -Perú
-        Tipo de Acntividad Económica:
-        '), 1, 'L', false);
 
-            $pdf->SetXY(120, 40);
-            $pdf->MultiCell(75, 3, utf8_decode("
-        Trabajadores del Proyecto: $actaReunionDetalle->motivo
-        Año de Inicio del Proyecto: 2021 
-        Número de Trabajadores Afiliados al SCTR:
-        Número de Trabajadores No Afiliados al SCTR:
-        Nombre de la Asegurador : RIMAC
-        "), 1, 'L', false);
+            $pdf->SetXY(10, 195);
+            $pdf->SetFont('Helvetica', 'B', 6);
+            $pdf->SetFillColor(192, 192, 192); //Fondo verde de celda
+            $pdf->SetTextColor(0,0,0); //Color del texto: Negro
+            $pdf->Cell(185, 5, utf8_decode('III.TEMAS PROPUESTOS'),  1, 0, 'L', true);
+
+            $pdf->SetXY(10, 200);
+            $pdf->SetFont('Helvetica', '', 6);
+            $pdf->SetFillColor(255, 255,255); //Fondo verde de celda
+            $pdf->SetTextColor(0,0,0);
+            $pdf->Cell(105, 5, utf8_decode('ACUERDOS'), 1,0,'C',true);
+            $pdf->Cell(20, 5, utf8_decode('Responsables'), 1,0,'C',true);
+            $pdf->Cell(20, 5, utf8_decode('Fecha compromiso'), 1,0,'C',true);
+            $pdf->Cell(20, 5, utf8_decode('Fecha cumplimiento'), 1,0,'C',true);
+            $pdf->Cell(20, 5, utf8_decode('Comentarios'), 1,0,'C',true);
+
+            $pdf->SetXY(10, 205);
+
+            $cantidadTemasPropuesto = count($actaReunionDetalle->listaTemaPropuesto);
 
 
-            $pdf->Line(160, 46, 193, 46);
-            $pdf->Line(175, 51, 193, 51);
-            $pdf->Line(180, 55, 193, 55);
+            if($cantidadTemasPropuesto != 10){
+                
+                for($i = 0 ; $i < (10 - $cantidadTemasPropuesto); $i++){
+                    array_push($actaReunionDetalle->listaTemaPropuesto,new TemaPropuesto());
+                }
+            }
 
-*/
+            $index = 205;
+
+            foreach($actaReunionDetalle->listaTemaPropuesto as $temaPropuesto){
+                
+                $pdf->SetXY(10, $index);
+
+                $pdf->Cell(105, 5, utf8_decode($temaPropuesto->acuerdo), 1, 0, 'C', false);
+                $pdf->Cell(20, 5, utf8_decode($temaPropuesto->responsable), 1, 0, 'C', false);
+                $pdf->Cell(20, 5, utf8_decode($temaPropuesto->fechaCompromiso), 1, 0, 'C', false);
+                $pdf->Cell(20, 5, utf8_decode($temaPropuesto->fechaCumplimiento), 1, 0, 'C', false);
+                $pdf->Cell(20, 5, utf8_decode($temaPropuesto->comentario), 1, 0, 'C', false);
+
+                $index+=5;
+            }
+
+            $pdf->SetXY(10, 255);
+            $pdf->SetFont('Helvetica', '', 6);
+            $pdf->SetFillColor(192, 192, 192); //Fondo verde de celda
+            $pdf->SetTextColor(0,0,0); //Color del texto: Negro
+            $pdf->Cell(185, 5, utf8_decode('IV.OBSERVACIONES'),  1, 0, 'L', true);
+            $pdf->SetXY(10, 260);
+            $pdf->MultiCell(185,5, utf8_decode($actaReunionDetalle->observaciones), 1, 'L', false);
+
         }
 
 
